@@ -1,6 +1,7 @@
 type Article {
   comments: [Comment!]!
   id: ID!
+  nsfw: Boolean!
   title: String!
   url: String!
 }
@@ -12,7 +13,7 @@ type Comment {
 
 type Mutation {
   addComment(articleID: String!, text: String!): Comment!
-  createArticle(title: String!, url: String!): Article!
+  createArticle(nsfw: Boolean, title: String!, url: String!): Article!
 }
 
 type Query {

@@ -6,6 +6,7 @@ import * as styles from "./Navbar.css";
 interface ArticleForm {
   url: string;
   title: string;
+  nsfw: boolean;
 }
 
 export default function Navbar() {
@@ -34,12 +35,14 @@ export default function Navbar() {
           const fd = new FormData(e.currentTarget);
           const url = fd.get("url")!.toString();
           const title = fd.get("title")!.toString();
+          const nsfw = fd.get("nsfw")!.toString();
 
           if (url.length > 0 && title.length > 0) {
             e.currentTarget.reset();
             const result = await createArticle({
               url,
               title,
+              nsfw: nsfw === "on",
             });
             navigate(`/article/${result.data?.createArticle.id}`);
           }
@@ -57,6 +60,10 @@ export default function Navbar() {
           placeholder="URL"
           className={styles.field}
         />
+        <label>
+          NSFW? <input name="nsfw" type="checkbox" className={styles.field} />
+        </label>
+
         <Button
           type="submit"
           loading={result.fetching}

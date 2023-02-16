@@ -2,13 +2,14 @@ import {FieldsSelection,Observable} from '@genql/runtime'
 
 export type Scalars = {
     ID: string,
-    String: string,
     Boolean: boolean,
+    String: string,
 }
 
 export interface Article {
     comments: Comment[]
     id: Scalars['ID']
+    nsfw: Scalars['Boolean']
     title: Scalars['String']
     url: Scalars['String']
     __typename: 'Article'
@@ -35,6 +36,7 @@ export interface Query {
 export interface ArticleRequest{
     comments?: CommentRequest
     id?: boolean | number
+    nsfw?: boolean | number
     title?: boolean | number
     url?: boolean | number
     __typename?: boolean | number
@@ -50,7 +52,7 @@ export interface CommentRequest{
 
 export interface MutationRequest{
     addComment?: [{articleID: Scalars['String'],text: Scalars['String']},CommentRequest]
-    createArticle?: [{title: Scalars['String'],url: Scalars['String']},ArticleRequest]
+    createArticle?: [{nsfw?: (Scalars['Boolean'] | null),title: Scalars['String'],url: Scalars['String']},ArticleRequest]
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -97,6 +99,7 @@ export const isQuery = (obj?: { __typename?: any } | null): obj is Query => {
 export interface ArticlePromiseChain{
     comments: ({get: <R extends CommentRequest>(request: R, defaultValue?: FieldsSelection<Comment, R>[]) => Promise<FieldsSelection<Comment, R>[]>}),
     id: ({get: (request?: boolean|number, defaultValue?: Scalars['ID']) => Promise<Scalars['ID']>}),
+    nsfw: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Promise<Scalars['Boolean']>}),
     title: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>}),
     url: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>})
 }
@@ -104,6 +107,7 @@ export interface ArticlePromiseChain{
 export interface ArticleObservableChain{
     comments: ({get: <R extends CommentRequest>(request: R, defaultValue?: FieldsSelection<Comment, R>[]) => Observable<FieldsSelection<Comment, R>[]>}),
     id: ({get: (request?: boolean|number, defaultValue?: Scalars['ID']) => Observable<Scalars['ID']>}),
+    nsfw: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Observable<Scalars['Boolean']>}),
     title: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>}),
     url: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>})
 }
@@ -120,12 +124,12 @@ export interface CommentObservableChain{
 
 export interface MutationPromiseChain{
     addComment: ((args: {articleID: Scalars['String'],text: Scalars['String']}) => CommentPromiseChain & {get: <R extends CommentRequest>(request: R, defaultValue?: FieldsSelection<Comment, R>) => Promise<FieldsSelection<Comment, R>>}),
-    createArticle: ((args: {title: Scalars['String'],url: Scalars['String']}) => ArticlePromiseChain & {get: <R extends ArticleRequest>(request: R, defaultValue?: FieldsSelection<Article, R>) => Promise<FieldsSelection<Article, R>>})
+    createArticle: ((args: {nsfw?: (Scalars['Boolean'] | null),title: Scalars['String'],url: Scalars['String']}) => ArticlePromiseChain & {get: <R extends ArticleRequest>(request: R, defaultValue?: FieldsSelection<Article, R>) => Promise<FieldsSelection<Article, R>>})
 }
 
 export interface MutationObservableChain{
     addComment: ((args: {articleID: Scalars['String'],text: Scalars['String']}) => CommentObservableChain & {get: <R extends CommentRequest>(request: R, defaultValue?: FieldsSelection<Comment, R>) => Observable<FieldsSelection<Comment, R>>}),
-    createArticle: ((args: {title: Scalars['String'],url: Scalars['String']}) => ArticleObservableChain & {get: <R extends ArticleRequest>(request: R, defaultValue?: FieldsSelection<Article, R>) => Observable<FieldsSelection<Article, R>>})
+    createArticle: ((args: {nsfw?: (Scalars['Boolean'] | null),title: Scalars['String'],url: Scalars['String']}) => ArticleObservableChain & {get: <R extends ArticleRequest>(request: R, defaultValue?: FieldsSelection<Article, R>) => Observable<FieldsSelection<Article, R>>})
 }
 
 export interface QueryPromiseChain{

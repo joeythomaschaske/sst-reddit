@@ -2,49 +2,53 @@ export default {
     "scalars": [
         1,
         2,
-        6
+        3
     ],
     "types": {
         "Article": {
             "comments": [
-                3
+                4
             ],
             "id": [
                 1
             ],
-            "title": [
+            "nsfw": [
                 2
+            ],
+            "title": [
+                3
             ],
             "url": [
-                2
+                3
             ],
             "__typename": [
-                2
+                3
             ]
         },
         "ID": {},
+        "Boolean": {},
         "String": {},
         "Comment": {
             "id": [
                 1
             ],
             "text": [
-                2
+                3
             ],
             "__typename": [
-                2
+                3
             ]
         },
         "Mutation": {
             "addComment": [
-                3,
+                4,
                 {
                     "articleID": [
-                        2,
+                        3,
                         "String!"
                     ],
                     "text": [
-                        2,
+                        3,
                         "String!"
                     ]
                 }
@@ -52,18 +56,21 @@ export default {
             "createArticle": [
                 0,
                 {
+                    "nsfw": [
+                        2
+                    ],
                     "title": [
-                        2,
+                        3,
                         "String!"
                     ],
                     "url": [
-                        2,
+                        3,
                         "String!"
                     ]
                 }
             ],
             "__typename": [
-                2
+                3
             ]
         },
         "Query": {
@@ -71,7 +78,7 @@ export default {
                 0,
                 {
                     "articleID": [
-                        2,
+                        3,
                         "String!"
                     ]
                 }
@@ -80,9 +87,8 @@ export default {
                 0
             ],
             "__typename": [
-                2
+                3
             ]
-        },
-        "Boolean": {}
+        }
     }
 }

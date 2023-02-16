@@ -14,6 +14,7 @@ const ArticleType = builder.objectRef<SQL.Row["article"]>("Article").implement({
     id: t.exposeID("articleID"),
     url: t.exposeString("url"),
     title: t.exposeString("title"),
+    nsfw: t.exposeBoolean("nsfw"),
     comments: t.field({
       type: [CommentType],
       resolve: (article) => Article.comments(article.articleID),
@@ -57,7 +58,8 @@ builder.mutationFields((t) => ({
     args: {
       url: t.arg.string({ required: true }),
       title: t.arg.string({ required: true }),
+      nsfw: t.arg.boolean(),
     },
-    resolve: (_, args) => Article.create(args.title, args.url),
+    resolve: (_, args) => Article.create(args.title, args.url, args.nsfw!),
   }),
 }));

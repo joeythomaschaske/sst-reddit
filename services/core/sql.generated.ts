@@ -9,6 +9,7 @@ export type Timestamp = ColumnType<Date | RawBuilder, Date | string | RawBuilder
 export interface Article {
   articleID: string;
   created: Generated<Timestamp | null>;
+  nsfw: Generated<boolean | null>;
   title: string;
   url: string;
 }
