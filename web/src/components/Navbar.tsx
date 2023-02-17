@@ -35,7 +35,7 @@ export default function Navbar() {
           const fd = new FormData(e.currentTarget);
           const url = fd.get("url")!.toString();
           const title = fd.get("title")!.toString();
-          const nsfw = fd.get("nsfw")!.toString();
+          const nsfw = fd.get("nsfw")?.toString();
 
           if (url.length > 0 && title.length > 0) {
             e.currentTarget.reset();
