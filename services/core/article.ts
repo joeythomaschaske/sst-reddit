@@ -21,8 +21,8 @@ export function get(articleID: string) {
 export function list() {
   return SQL.DB.selectFrom("article" as never)
     .selectAll()
-    .where("nsfw", "is", false)
-    .orderBy("created", "desc")
+    .where("nsfw" as never, "is", false as never)
+    .orderBy("created" as never, "desc")
     .execute();
 }
 
